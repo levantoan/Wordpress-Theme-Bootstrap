@@ -1,0 +1,17 @@
+/*
+* Author: http://levantoan.com
+*/
+.transition
+{
+	transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+}
+.menu_header ul li.current-menu-item > a,
+.menu_header ul li.current-menu-ancestor > a,
+.menu_header ul li.current_page_item > a,
+.menu_header ul li.current_page_ancestor > a {
+		color:#dd4c39;
+}
