@@ -77,3 +77,7 @@ img.wp-smiley,
 .gallery-columns-1 .gallery-icon img {
 	padding: 3%;
 }
+/*calendar*/
+#wp-calendar{
+	width: 100%;
+}
