@@ -10,7 +10,7 @@ function useAjaxInWp() {
 	}
 	
 	//Script
-	if(file_exists( dirname(__FILE__) . '/js/og.jquery.min.js') ){
+	if(file_exists( dirname(__FILE__) . '/js/devvn.jquery.min.js') ){
 		wp_register_script( 'devvn-main', esc_url( trailingslashit( get_template_directory_uri() ) . 'js/devvn.jquery.min.js' ), array( 'jquery' ), VERSIONOG, true );
 	}else{
 		wp_register_script( 'devvn-main', esc_url( trailingslashit( get_template_directory_uri() ) . 'js/devvn_main.js' ), array( 'jquery' ), VERSIONOG, true );	
@@ -30,7 +30,11 @@ function enqueue_UseAjaxInWp() {
 		wp_enqueue_style( 'style' );
 		wp_enqueue_style( 'respon' );	
 	}
-	wp_enqueue_script( 'devvn-main' );
+	if(file_exists( dirname(__FILE__) . '/js/devvn.jquery.min.js') ){
+		wp_enqueue_script( 'devvn-main' );
+	}else{
+		wp_enqueue_script( 'devvn-main' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'useAjaxInWp', 1 );
 add_action( 'wp_enqueue_scripts', 'enqueue_UseAjaxInWp' );
