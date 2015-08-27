@@ -26,6 +26,8 @@ function devvn_setup() {
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
 	) );
+	//Remove version
+	remove_action('wp_head', 'wp_generator');
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
 /*
