@@ -74,7 +74,16 @@ function devvn_mobile_class( $classes ) {
 	}
 	return $classes;
 }
+//Theme Options
+function my_acf_options_page_settings( $settings )
+{
+	$settings['title'] = 'Theme Options';
+	$settings['pages'] = array('General');
+
+	return $settings;
+}
+
+add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
 require get_template_directory() . '/inc/copyright/copyright_svl.php';
-require get_template_directory() . '/inc/advancedCustomField/advancedCustomField.php';
 require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';
