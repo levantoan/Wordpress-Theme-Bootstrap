@@ -11,6 +11,8 @@ function devvn_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	//Add thumbnail to post
 	add_theme_support( 'post-thumbnails' );
+	//Shortcode in widget
+	add_filter('widget_text', 'do_shortcode');
 	//menu
 	/********
 	 * Call: wp_nav_menu(array('theme_location'  => 'primary','container'=> ''));
