@@ -1,7 +1,6 @@
 <?php
 define( TEMP_URL , get_bloginfo('template_url'));
 define( VERSIONOG ,'1.0');
-define( text_domain ,'devvn');
 /*
  * Setup theme
  */
@@ -30,6 +29,18 @@ function devvn_setup() {
 	) );
 	//Remove version
 	remove_action('wp_head', 'wp_generator');
+	//Remove Default WordPress Image Sizes
+	function svl_remove_default_image_sizes( $sizes) {
+		//unset( $sizes['thumbnail']);
+		unset( $sizes['medium']);
+		unset( $sizes['large']);
+		 
+		return $sizes;
+	}
+	add_filter('intermediate_image_sizes_advanced', 'svl_remove_default_image_sizes');
+	if ( function_exists( 'add_image_size' ) ) {
+		//add_image_size( 'homepage-thumb', 50, 50, true ); //(cropped)
+	}
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
 /*
@@ -86,6 +97,6 @@ function my_acf_options_page_settings( $settings )
 }
 
 add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
-require get_template_directory() . '/inc/copyright/copyright_svl.php';
-require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
+//require get_template_directory() . '/inc/copyright/copyright_svl.php';
+//require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';

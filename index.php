@@ -8,6 +8,9 @@
 	<link rel="shortcut icon" href="" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <?php if(is_single())://Author Facebook Link?>
+    <meta property="article:author" content=""/>
+    <?php endif;?>
     <?php wp_head(); ?>
   </head>
   <body <?php body_class();?>>  
