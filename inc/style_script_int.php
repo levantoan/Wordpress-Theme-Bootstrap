@@ -8,10 +8,10 @@ function useAjaxInWp() {
 	global $style_file,$script_file;
 	//Style
 	if(file_exists( dirname(__FILE__) . '/css/style.min.css') ){
-		wp_register_style( 'style_min', esc_url( trailingslashit( get_template_directory_uri() ) . 'css/style.min.css' ), VERSIONOG, true );
+		wp_register_style( 'style_min', esc_url( trailingslashit( get_template_directory_uri() ) . 'css/style.min.css' ),array(), VERSIONOG, 'all' );
 	}else{	
 		foreach ($style_file as $k=>$v){
-			wp_register_style( $k, esc_url( trailingslashit( get_template_directory_uri() ) . $v ), VERSIONOG, true );
+			wp_register_style( $k, esc_url( trailingslashit( get_template_directory_uri() ) . $v ),array(), VERSIONOG, 'all' );
 		}
 	}
 	//Script
