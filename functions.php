@@ -1,6 +1,9 @@
 <?php
 define( TEMP_URL , get_bloginfo('template_url'));
 define( VERSIONOG ,'1.0');
+//require get_template_directory() . '/inc/copyright/copyright_svl.php';
+//require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
+require get_template_directory() . '/inc/style_script_int.php';
 /*
  * Setup theme
  */
@@ -43,14 +46,9 @@ function devvn_setup() {
 	}
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
-/*
- * End Setup theme
- */
 //Sidebar
 /*
- <?php if ( !function_exists('dynamic_sidebar')
-|| !dynamic_sidebar('Main Sidebar') ) : ?>
-<?php endif; ?>
+ <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Main Sidebar')) : ?><?php endif; ?>
  */
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
 function theme_slug_widgets_init() {
@@ -61,7 +59,7 @@ function theme_slug_widgets_init() {
 		'after_widget'  => '</div>',
 		'before_title'  => '',
 		'after_title'   => '',
-    ) );
+    ));
 }
 //Title
 function svl_wp_title( $title, $sep ) {
@@ -97,6 +95,21 @@ function my_acf_options_page_settings( $settings )
 }
 
 add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
-//require get_template_directory() . '/inc/copyright/copyright_svl.php';
-//require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
-require get_template_directory() . '/inc/style_script_int.php';
+//Code phan trang
+function wp_corenavi_table() {
+		global $wp_query;
+		$big = 999999999; 
+		$translated = "";
+		$total = $wp_query->max_num_pages;
+		if($total > 1) echo '<div class="paginate_links">';
+		echo paginate_links( array(
+			'base' 		=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' 	=> '?paged=%#%',
+			'current' 	=> max( 1, get_query_var('paged') ),
+			'total' 	=> $wp_query->max_num_pages,
+			'mid_size'	=> '10',
+			'prev_text'    => __('Previous'),
+			'next_text'    => __('Next'),
+		) );
+		if($total > 1) echo '</div>';
+}
