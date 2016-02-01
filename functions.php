@@ -1,6 +1,7 @@
 <?php
-define( TEMP_URL , get_bloginfo('template_url'));
-define( VERSIONOG ,'1.0');
+define( "TEMP_URL" , get_bloginfo('template_url'));
+define( "VERSIONOG" ,'1.0');
+require get_template_directory() . '/inc/aq_resizer.php';
 //require get_template_directory() . '/inc/copyright/copyright_svl.php';
 //require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';
@@ -17,7 +18,7 @@ function devvn_setup() {
 	add_filter('widget_text', 'do_shortcode');
 	//menu
 	/********
-	 * Call: wp_nav_menu(array('theme_location'  => 'primary','container'=> ''));
+	 * Call: wp_nav_menu(array('theme_location'  => 'header','container'=> ''));
 	 * *********/
 	register_nav_menus( array(
 		'header' => __( 'Header menu', 'devvn' ),
@@ -112,4 +113,39 @@ function wp_corenavi_table() {
 			'next_text'    => __('Next'),
 		) );
 		if($total > 1) echo '</div>';
+}
+function div_wrapper($content) {
+    $pattern = '~<iframe.*src=".*(youtube.com|youtu.be).*</iframe>|<embed.*</embed>~'; //only iframe youtube
+    preg_match_all($pattern, $content, $matches);
+    foreach ($matches[0] as $match) { 
+        $wrappedframe = '<div class="videoWrapper">' . $match . '</div>';
+        $content = str_replace($match, $wrappedframe, $content);
+    }
+    return $content;    
+}
+add_filter('the_content', 'div_wrapper');
+
+function get_thumbnail($img_size = 'thumbnail', $w = 360, $h = 245, $w_s = 360 , $h_s = 245){
+	global $post;
+	$url_thumb_full = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );  		
+  	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $img_size );
+	$url_thumb = $thumb['0'];
+	$w_thumb = $thumb['1'];
+	$h_thumb = $thumb['2'];
+	if(($w_thumb != $w || $h_thumb != $h) && $url_thumb_full) $url_thumb = aq_resize($url_thumb_full,$w_s,$h_s,true,true,true);
+	if(!$url_thumb) $url_thumb = TEMP_URL.'/images/no-image-featured-image.png';
+	return $url_thumb;
+}
+
+function get_excerpt($limit = 130){
+	$excerpt = get_the_excerpt();
+	if(!$excerpt) $excerpt = get_the_content();
+	$excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+	$excerpt = strip_shortcodes($excerpt);
+	$excerpt = strip_tags($excerpt);
+	$excerpt = substr($excerpt, 0, $limit);
+	$excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+	$excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
+	$excerpt = $excerpt.'... <a href="'.$permalink.'" title="">View more</a>';
+	return $excerpt;
 }
