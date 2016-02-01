@@ -49,13 +49,13 @@ function devvn_setup() {
 add_action( 'after_setup_theme', 'devvn_setup' );
 //Sidebar
 /*
- <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Main Sidebar')) : ?><?php endif; ?>
+ <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('main-sidebar')) : ?><?php endif; ?>
  */
 add_action( 'widgets_init', 'theme_slug_widgets_init' );
 function theme_slug_widgets_init() {
     register_sidebar( array(
-        'name' => __( 'Header Left', 'devvn' ),
-        'id' => 'header-left-sidebar',        
+        'name' => __( 'Main Sidebar', 'devvn' ),
+        'id' => 'main-sidebar',        
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '',
