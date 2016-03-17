@@ -26,6 +26,19 @@ html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:1
 /*
 02. Main Style
 */
+body{
+	background: #fff;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	line-height: 1.3125;
+}
 .transition
 {
 	transition: all 0.3s linear;
@@ -98,7 +111,6 @@ img.aligncenter {
 .wp-caption-text {
 	color: #707070;
 	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
 	font-size: 12px;
 	font-size: 1.2rem;
 	line-height: 1.5;
@@ -156,7 +168,6 @@ img.aligncenter {
 	color: #707070;
 	color: rgba(51, 51, 51, 0.7);
 	display: block;
-	font-family: "Noto Sans", sans-serif;
 	font-size: 12px;
 	font-size: 1.2rem;
 	line-height: 1.5;
