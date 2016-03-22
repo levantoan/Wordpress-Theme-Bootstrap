@@ -16,6 +16,30 @@
 			$('html, body').animate({scrollTop:0}, 500 );
 			return false;
 		});
+		$('.button_menu,.over_wrap').click(function() {
+			if( ($('html').hasClass('openMenu')) ){
+				$('html').removeClass('openMenu');
+			}else {
+				$('html').addClass('openMenu');
+			}
+			return false;
+		});
+		$('.menu_header li.menu-item-has-children').each(function(){
+	    	$(this).prepend('<i class="fa fa-angle-down click_opensub_menu"></i>');
+	    });
+	    $('.click_opensub_menu').on('click',function(){
+	    	if($(this).parent().hasClass('opensub_menu')){
+	    		$(this).parent().removeClass('opensub_menu');
+	    		return false;
+	    	}
+	    	$('.menu_header li').removeClass('opensub_menu');
+	    	if($(this).parent().hasClass('opensub_menu')){
+	    		$(this).parent().removeClass('opensub_menu');
+	    	}else{
+	    		$(this).parent().addClass('opensub_menu');
+	    	}
+	    	return false;
+	    });
 		/**********
 		 * Scroll
 		 * **************/
