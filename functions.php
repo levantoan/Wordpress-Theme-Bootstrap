@@ -86,6 +86,7 @@ function devvn_mobile_class( $classes ) {
 	}
 	return $classes;
 }
+/* ACF 4
 //Theme Options
 function my_acf_options_page_settings( $settings )
 {
@@ -96,6 +97,24 @@ function my_acf_options_page_settings( $settings )
 }
 
 add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
+*/
+//Theme Options
+if( function_exists('acf_add_options_page') ) {
+ 
+	$option_page = acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title' 	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability' 	=> 'edit_posts',
+		'redirect' 	=> false
+	));
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Shop Page Setting',
+		'menu_title' 	=> 'Social',
+		'parent_slug' 	=> $parent['menu_slug'],
+	));
+ 
+}
 //Code phan trang
 function wp_corenavi_table() {
 		global $wp_query;
