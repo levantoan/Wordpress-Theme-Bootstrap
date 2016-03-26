@@ -289,6 +289,9 @@ img{
 .click_opensub_menu{
 	display: none;
 }
+.over_wrap,.button_menu{
+	display: none;
+}
 /*#menu*/
 .videoWrapper {
     position: relative;
