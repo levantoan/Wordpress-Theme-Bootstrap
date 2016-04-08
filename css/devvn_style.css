@@ -327,3 +327,78 @@ img{
 .paginate_links .page-numbers:hover{
     background: #004f82;
 }
+/*tinymce*/
+.tinymce ul, .tinymce ol {
+    padding-left: 30px;
+}
+blockquote {
+    border-width: 1px 1px 1px 3px;
+    border-style: solid;
+    border-color: #eaeaea #eaeaea #eaeaea #ED564B;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-style: italic;
+    border-left: 3px solid #ae0000;
+    font-size: inherit;
+}
+.tinymce h1 {
+    font-size: 30px;
+    line-height: 36px;
+}
+.tinymce h2 {
+    font-size: 28px;
+    line-height: 35px;
+}
+.tinymce h3 {
+    font-size: 26px;
+    line-height: 32px;
+}
+.tinymce h4 {
+    font-size: 24px;
+    line-height: 30px;
+}
+.tinymce h5 {
+    font-size: 22px;
+    line-height: 28px;
+}
+.tinymce h6 {
+    font-size: 20px;
+    line-height: 25px;
+}
+.tinymce pre {
+    background: #eee;
+    font-family: "Courier 10 Pitch", Courier, monospace;
+    font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    padding: 1.6em;
+    overflow: auto;
+    max-width: 100%;
+}
+.tinymce table {
+    margin: 0 0 1.5em;
+    width: 100%;
+    border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.tinymce caption, .tinymce th, .tinymce td {
+    font-weight: normal;
+    text-align: left;
+}
+.tinymce th, .tinymce td {
+    border: 1px solid #eaeaea;
+    padding: 6px 10px;
+}
+.tinymce th {
+    font-weight: bold;
+}
+.tinymce a{
+	color: #ae0000;
+}
+.tinymce a:hover{
+	text-decoration: underline;
+}
+
+/*#tinymce*/
