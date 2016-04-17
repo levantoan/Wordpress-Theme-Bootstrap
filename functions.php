@@ -5,6 +5,7 @@ require get_template_directory() . '/inc/aq_resizer.php';
 //require get_template_directory() . '/inc/copyright/copyright_svl.php';
 //require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';
+require get_template_directory() . '/inc/customizer.php';
 /*
  * Setup theme
  */
@@ -30,6 +31,11 @@ function devvn_setup() {
 	 */
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+	) );
+	add_theme_support( 'custom-logo', array(
+		'height'      => 100,
+		'width'       => 240,
+		//'flex-height' => true,
 	) );
 	//Remove version
 	remove_action('wp_head', 'wp_generator');
@@ -58,8 +64,8 @@ function theme_slug_widgets_init() {
         'id' => 'main-sidebar',        
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
-		'before_title'  => '',
-		'after_title'   => '',
+		'before_title'  => '<h3 class="title-sidebar">',
+		'after_title'   => '</h3',
     ));
 }
 //Title
@@ -97,7 +103,7 @@ function my_acf_options_page_settings( $settings )
 }
 
 add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
-*/
+
 //Theme Options
 if( function_exists('acf_add_options_page') ) {
  
@@ -115,6 +121,7 @@ if( function_exists('acf_add_options_page') ) {
 	));
  
 }
+*/
 //Code phan trang
 function wp_corenavi_table() {
 		global $wp_query;
@@ -128,8 +135,8 @@ function wp_corenavi_table() {
 			'current' 	=> max( 1, get_query_var('paged') ),
 			'total' 	=> $wp_query->max_num_pages,
 			'mid_size'	=> '10',
-			'prev_text'    => __('Previous'),
-			'next_text'    => __('Next'),
+			'prev_text'    => __('Previous','devvn'),
+			'next_text'    => __('Next','devvn'),
 		) );
 		if($total > 1) echo '</div>';
 }
@@ -144,14 +151,14 @@ function div_wrapper($content) {
 }
 add_filter('the_content', 'div_wrapper');
 
-function get_thumbnail($img_size = 'thumbnail', $w = 360, $h = 245, $w_s = 360 , $h_s = 245){
+function get_thumbnail($img_size = 'thumbnail', $w = '', $h = ''){
 	global $post;
 	$url_thumb_full = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );  		
   	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $img_size );
 	$url_thumb = $thumb['0'];
 	$w_thumb = $thumb['1'];
 	$h_thumb = $thumb['2'];
-	if(($w_thumb != $w || $h_thumb != $h) && $url_thumb_full) $url_thumb = aq_resize($url_thumb_full,$w_s,$h_s,true,true,true);
+	if(($w_thumb != $w || $h_thumb != $h) && $url_thumb_full && $w != "" && $h != "") $url_thumb = aq_resize($url_thumb_full,$w,$h,true,true,true);
 	if(!$url_thumb) $url_thumb = TEMP_URL.'/images/no-image-featured-image.png';
 	return $url_thumb;
 }
@@ -165,7 +172,15 @@ function get_excerpt($limit = 130){
 	$excerpt = substr($excerpt, 0, $limit);
 	$excerpt = substr($excerpt, 0, strripos($excerpt, " "));
 	$excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
-	$permalink = get_the_permalink();
-	$excerpt = $excerpt.'... <a href="'.$permalink.'" title="">View more</a>';
+	if($excerpt){
+		$permalink = get_the_permalink();
+		$excerpt = $excerpt.'... <a href="'.$permalink.'" title="" rel="nofollow">View more</a>';
+	}
 	return $excerpt;
+}
+
+function devvn_the_custom_logo() {
+	if ( function_exists( 'the_custom_logo' ) ) {
+		the_custom_logo();
+	}
 }

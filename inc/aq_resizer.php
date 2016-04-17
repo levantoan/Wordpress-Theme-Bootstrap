@@ -1,9 +1,8 @@
 <?php
-
 /**
  * Title         : Aqua Resizer
  * Description   : Resizes WordPress images on the fly
- * Version       : 1.2.0
+ * Version       : 1.2.1
  * Author        : Syamil MJ
  * Author URI    : http://aquagraphite.com
  * License       : WTFPL - http://sam.zoy.org/wtfpl/
@@ -224,10 +223,6 @@ if(!class_exists('Aq_Resize')) {
     }
 }
 
-
-
-
-
 if(!function_exists('aq_resize')) {
 
     /**
@@ -235,9 +230,14 @@ if(!function_exists('aq_resize')) {
      * need to change any code in your own WP themes. Usage is still the same :)
      */
     function aq_resize( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
+        /* WPML Fix */
+        if ( defined( 'ICL_SITEPRESS_VERSION' ) ){
+            global $sitepress;
+            $url = $sitepress->convert_url( $url, $sitepress->get_default_language() );
+        }
+        /* WPML Fix */
+
         $aq_resize = Aq_Resize::getInstance();
         return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
     }
 }
-
-
