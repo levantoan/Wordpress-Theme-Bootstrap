@@ -59,12 +59,13 @@
 		/**********
 		 * Resize
 		 * **************/
+		var id;
 		function resize_func(){
-			
+								
 		}
-		resize_func();
 		$(window).resize(function(){
-			resize_func();
-		})
+			clearTimeout(id);
+		    id = setTimeout(resize_func, 500);
+		});
 	});
 })(jQuery);

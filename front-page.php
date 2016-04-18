@@ -18,7 +18,13 @@
   	<header class="header" itemscope itemtype="http://schema.org/WPHeader">
   		<div class="container">
   			<div class="logo">
-  				<h1 id="logo" class="image-logo" itemprop="headline"><?php devvn_the_custom_logo(); ?></h1>
+  				<h1 id="logo" class="image-logo" itemprop="headline">
+  				<?php if(get_theme_mod('custom_logo')){?>
+  					<?php devvn_the_custom_logo(); ?>
+  				<?php }else{?>
+	    			<a href="<?=esc_url(home_url('/'))?>" title="<?php bloginfo('description')?>"><?php bloginfo('name')?></a>
+	    		<?php }?>
+  				</h1>
   			</div>
   			<div class="menu_header" role="navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
   				<?php wp_nav_menu(array('theme_location'  => 'header','container'=> ''));?>
