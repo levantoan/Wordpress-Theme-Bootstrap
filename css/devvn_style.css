@@ -400,5 +400,8 @@ blockquote {
 .tinymce a:hover{
 	text-decoration: underline;
 }
-
 /*#tinymce*/
+.logo h1.image-logo {
+    margin: 0;
+    padding: 0;
+}
