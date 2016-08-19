@@ -5,6 +5,11 @@ function annointed_admin_bar_remove() {
 }
 add_action('wp_before_admin_bar_render', 'annointed_admin_bar_remove', 0);
 
+function mw_login_styles() {
+	echo '<style type="text/css">.login h1 a { background: url('. get_bloginfo("template_directory") .'/inc/copyright/svl_icon.png) no-repeat center top;width: inherit;height: 45px;}</style>';
+}
+add_action('login_head', 'mw_login_styles');
+
 // Change Login URL
 function mw_login_url() {
 	return 'http://levantoan.com';
