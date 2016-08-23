@@ -1,11 +1,21 @@
 <?php
 define( "TEMP_URL" , get_bloginfo('template_url'));
 define( "VERSIONOG" ,'1.0');
+if( class_exists('acf') ) { 
+	define('GOOLE_MAPS_API', get_field('google_maps_api','option'));
+}
+
+require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
 require get_template_directory() . '/inc/aq_resizer.php';
 //require get_template_directory() . '/inc/copyright/copyright_svl.php';
 //require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';
-require get_template_directory() . '/inc/customizer.php';
+
+function my_acf_google_map_api( $api ){	
+	$api['key'] = GOOLE_MAPS_API;	
+	return $api;	
+}
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 /*
  * Setup theme
  */
@@ -31,11 +41,6 @@ function devvn_setup() {
 	 */
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
-	add_theme_support( 'custom-logo', array(
-		'height'      => 100,
-		'width'       => 240,
-		//'flex-height' => true,
 	) );
 	//Remove version
 	remove_action('wp_head', 'wp_generator');
@@ -103,7 +108,7 @@ function my_acf_options_page_settings( $settings )
 }
 
 add_filter('acf/options_page/settings', 'my_acf_options_page_settings');
-
+*/
 //Theme Options
 if( function_exists('acf_add_options_page') ) {
  
@@ -114,14 +119,14 @@ if( function_exists('acf_add_options_page') ) {
 		'capability' 	=> 'edit_posts',
 		'redirect' 	=> false
 	));
-	acf_add_options_sub_page(array(
+	/*acf_add_options_sub_page(array(
 		'page_title' 	=> 'Shop Page Setting',
 		'menu_title' 	=> 'Social',
 		'parent_slug' 	=> $parent['menu_slug'],
-	));
+	));*/
  
 }
-*/
+
 //Code phan trang
 function wp_corenavi_table() {
 		global $wp_query;
@@ -179,8 +184,29 @@ function get_excerpt($limit = 130){
 	return $excerpt;
 }
 
-function devvn_the_custom_logo() {
-	if ( function_exists( 'the_custom_logo' ) ) {
-		the_custom_logo();
-	}
+add_action( 'tgmpa_register', 'devvn_register_required_plugins' );
+function devvn_register_required_plugins() {
+	$plugins = array(
+		array(
+			'name'               => 'Advanced Custom Fields PRO',
+			'slug'               => 'advanced-custom-fields-pro',
+			'source'             => get_template_directory() . '/inc/plugins/advanced-custom-fields-pro.zip',
+			'required'           => true,
+			'force_activation'   => true,
+			'force_deactivation' => true
+		)
+	);
+	$config = array(
+		'id'           => 'devvn',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'parent_slug'  => 'themes.php',            // Parent menu slug.
+		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => false,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+	);
+	tgmpa( $plugins, $config );
 }
