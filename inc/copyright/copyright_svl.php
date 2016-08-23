@@ -6,13 +6,9 @@ function annointed_admin_bar_remove() {
 add_action('wp_before_admin_bar_render', 'annointed_admin_bar_remove', 0);
 
 function mw_login_styles() {
-<<<<<<< HEAD
 	$logo = get_field('logo','option');
   	$logo = ($logo) ? $logo : TEMP_URL.'/images/logo.png';
 	echo '<style type="text/css">.login h1 a { background: url('.$logo.') no-repeat center top;width: inherit;height: 50px;background-size: auto 100%;-moz-background-size: auto 100%;-webkit-background-size: auto 100%;}</style>';
-=======
-	echo '<style type="text/css">.login h1 a { background: url('. get_bloginfo("template_directory") .'/inc/copyright/svl_icon.png) no-repeat center top;width: inherit;height: 45px;}</style>';
->>>>>>> f94927e7cf7485bf84f45acdb870fb2f3005e325
 }
 add_action('login_head', 'mw_login_styles');
 
