@@ -1,6 +1,7 @@
 <?php
 define( "TEMP_URL" , get_bloginfo('template_url'));
 define( "VERSIONOG" ,'1.0');
+define( "DEVVN_DEV_MODE" ,true);
 if( class_exists('acf') ) { 
 	define('GOOLE_MAPS_API', get_field('google_maps_api','option'));
 }
