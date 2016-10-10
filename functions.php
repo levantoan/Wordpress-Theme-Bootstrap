@@ -50,6 +50,7 @@ function devvn_setup() {
 		//unset( $sizes['thumbnail']);
 		unset( $sizes['medium']);
 		unset( $sizes['large']);
+		unset( $sizes['medium_large']);
 		 
 		return $sizes;
 	}
