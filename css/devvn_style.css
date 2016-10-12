@@ -311,8 +311,8 @@ img{
 	left: -100%;
 	left: calc(-100% - 3px);
 }
-.menu_header li:hover > ul,
-.menu_header li:focus > ul,
+.devvn_desktop .menu_header li:hover > ul,
+.devvn_desktop .menu_header li:focus > ul,
 .menu_header li.mobile_open_sub > ul {
     visibility: visible;
     opacity: 1;

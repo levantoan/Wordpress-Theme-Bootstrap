@@ -100,7 +100,8 @@
 	.devvn_mobile .menu_header ul.sub-menu {
 	    display: none;
 	}
-	.devvn_mobile .menu_header li.opensub_menu > ul.sub-menu {
+	.devvn_mobile .menu_header li.opensub_menu > ul.sub-menu,
+	.devvn_mobile .menu_header li.mobile_open_sub > ul.sub-menu {
 	    position: relative;
 	    visibility: visible;
 	    opacity: 1;
