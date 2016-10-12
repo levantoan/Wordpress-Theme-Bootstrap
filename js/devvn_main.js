@@ -32,13 +32,22 @@
 	    		$(this).parent().removeClass('opensub_menu');
 	    		return false;
 	    	}
-	    	$('.menu_header li').removeClass('opensub_menu');
+	    	//$('.menu_header li').removeClass('opensub_menu');
 	    	if($(this).parent().hasClass('opensub_menu')){
 	    		$(this).parent().removeClass('opensub_menu');
 	    	}else{
 	    		$(this).parent().addClass('opensub_menu');
 	    	}
 	    	return false;
+	    });
+	    $('.devvn_mobile .menu-item-has-children > a').click(function(){
+	    	var thisParent = $(this).parent();
+	    	if(thisParent.hasClass('mobile_open_sub')){
+	    		thisParent.removeClass('mobile_open_sub');
+	    	}else{
+	    		thisParent.addClass('mobile_open_sub');
+		    	return false;
+	    	}
 	    });
 		/**********
 		 * Scroll

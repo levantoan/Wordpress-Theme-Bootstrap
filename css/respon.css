@@ -44,14 +44,14 @@
 		transition: -webkit-transform .4s ease;
 		transition: transform .4s ease;
 		transition: transform .4s ease,-webkit-transform .4s ease;
-		left: -250px;
+		left: -280px;
 		padding: 10px;
 		z-index: 999999;
 	}
 	.openMenu .menu_header {
-		-moz-transform: translate3d(250px,0,0);
-		-webkit-transform: translate3d(250px,0,0);
-		transform: translate3d(250px,0,0);
+		-moz-transform: translate3d(280px,0,0);
+		-webkit-transform: translate3d(280px,0,0);
+		transform: translate3d(280px,0,0);
 	}
 	html.openMenu, html.openMenu body {
 	    overflow: hidden;
@@ -100,13 +100,14 @@
 	.devvn_mobile .menu_header ul.sub-menu {
 	    display: none;
 	}
-	.devvn_mobile .menu_header li.opensub_menu > ul {
+	.devvn_mobile .menu_header li.opensub_menu > ul.sub-menu {
 	    position: relative;
 	    visibility: visible;
 	    opacity: 1;
 	    width: 100%;
 	    top: 0;
 	    display: block;
+	    left: 0;
 	}
 	/*#menu mobile*/
 }

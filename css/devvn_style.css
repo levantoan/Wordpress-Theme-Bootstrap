@@ -312,7 +312,8 @@ img{
 	left: calc(-100% - 3px);
 }
 .menu_header li:hover > ul,
-.menu_header li:focus > ul {
+.menu_header li:focus > ul,
+.menu_header li.mobile_open_sub > ul {
     visibility: visible;
     opacity: 1;
     top: 100%;
