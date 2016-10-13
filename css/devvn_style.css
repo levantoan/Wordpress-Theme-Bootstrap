@@ -318,6 +318,11 @@ img{
     opacity: 1;
     top: 100%;
 }
+.devvn_desktop .menu_header li:hover > ul ul,
+.devvn_desktop .menu_header li:focus > ul ul,
+.menu_header li.mobile_open_sub > ul ul{
+    top: 0;
+}
 .menu_header > ul > li ul > li:hover > ul,
 .menu_header > ul > li ul > li:focus > ul {
     top: -1px;
