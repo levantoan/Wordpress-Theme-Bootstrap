@@ -1,6 +1,6 @@
 <?php
 define( "TEMP_URL" , get_bloginfo('template_url'));
-define( "VERSIONOG" ,'1.0');
+define( "DEVVN_VERSION" ,'1.0');
 define( "DEVVN_DEV_MODE" ,true);
 if( class_exists('acf') ) { 
 	define('GOOLE_MAPS_API', get_field('google_maps_api','option'));
@@ -185,6 +185,11 @@ function get_excerpt($limit = 130){
 	}
 	return $excerpt;
 }
+
+function devvn_excerpt_more( $more ) {
+    return '...';
+}
+add_filter( 'excerpt_more', 'devvn_excerpt_more' );
 
 add_action( 'tgmpa_register', 'devvn_register_required_plugins' );
 function devvn_register_required_plugins() {
