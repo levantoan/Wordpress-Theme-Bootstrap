@@ -1,6 +1,7 @@
 <?php
 $style_file = array(
-	'style'		=> 'css/devvn_style.css',
+	'first'		=> 'css/first.css',
+	'last'		=> 'css/last.css',
 	'respon'	=>	'css/respon.css',
 );
 $script_file = array();
