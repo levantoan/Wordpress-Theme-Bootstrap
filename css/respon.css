@@ -97,6 +97,9 @@
 	    color: #333;
 	    cursor: pointer;
 	}
+	.menu_header > ul > li ul {
+	    width: 100%;
+	}
 	.devvn_mobile .menu_header ul.sub-menu {
 	    display: none;
 	}
