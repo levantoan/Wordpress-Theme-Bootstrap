@@ -1,7 +1,6 @@
 <?php
 $style_file = array(
-	'first'		=> 'css/first.css',
-	'last'		=> 'css/last.css',
+	'style'		=> 'css/style.css',
 	'respon'	=>	'css/respon.css',
 );
 $script_file = array();
