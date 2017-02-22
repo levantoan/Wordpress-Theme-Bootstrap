@@ -33,7 +33,7 @@ function useAjaxInWp() {
 function enqueue_UseAjaxInWp() {
 	global $style_file,$script_file;
 	if(!DEVVN_DEV_MODE){
-		wp_enqueue_style( 'style_min' );	
+		wp_enqueue_style( 'style' );	
 	}else{	
 		foreach ($style_file as $k=>$v){
 			wp_enqueue_style( $k );
