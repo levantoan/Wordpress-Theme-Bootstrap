@@ -61,17 +61,19 @@ function devvn_setup() {
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
 function disable_wp_emojicons() {
-	// all actions related to emojis
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	
-	// filter to remove TinyMCE emojis
-	add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+    if(!is_admin()){
+        // all actions related to emojis
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+
+        // filter to remove TinyMCE emojis
+        add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+    }
 }
 add_action( 'init', 'disable_wp_emojicons' );
 //Sidebar
@@ -99,7 +101,7 @@ function svl_wp_title( $title, $sep ) {
 	if ( $site_description && ( is_home() || is_front_page() ) )
 		$title = "$title $sep $site_description";
 	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'devvn' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( __( 'Trang %s', 'devvn' ), max( $paged, $page ) );
 	return $title;
 }
 add_filter( 'wp_title', 'svl_wp_title', 10, 2 );
@@ -196,8 +198,8 @@ function wp_corenavi_table() {
 			'current' 	=> max( 1, get_query_var('paged') ),
 			'total' 	=> $wp_query->max_num_pages,
 			'mid_size'	=> '10',
-			'prev_text'    => __('Previous','devvn'),
-			'next_text'    => __('Next','devvn'),
+			'prev_text'    => __('Trang trước','devvn'),
+			'next_text'    => __('Trang tiếp','devvn'),
 		) );
 		if($total > 1) echo '</div>';
 }
@@ -235,7 +237,7 @@ function get_excerpt($limit = 130){
 	$excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
 	if($excerpt){
 		$permalink = get_the_permalink();
-		$excerpt = $excerpt.'... <a href="'.$permalink.'" title="" rel="nofollow">View more</a>';
+		$excerpt = $excerpt.'... <a href="'.$permalink.'" title="" rel="nofollow">'.__('Xem thêm','devvn').'</a>';
 	}
 	return $excerpt;
 }

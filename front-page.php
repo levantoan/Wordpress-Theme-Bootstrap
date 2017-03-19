@@ -6,12 +6,6 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	   	<?php if(is_single() && get_field('author_face_link','option')):?>
-	    <meta property="article:author" content="<?=esc_url(get_field('author_face_link','option'))?>"/>
-	    <?php endif;?>	  
-	    <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
-		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-		<?php endif; ?>
 	    <?php wp_head(); ?>
   	</head>
   	<body <?php body_class();?> itemscope itemtype="http://schema.org/WebPage">
