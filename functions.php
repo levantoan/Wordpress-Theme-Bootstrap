@@ -60,25 +60,6 @@ function devvn_setup() {
 	}
 }
 add_action( 'after_setup_theme', 'devvn_setup' );
-<<<<<<< HEAD
-function disable_wp_emojicons() {
-    if(!is_admin()){
-        // all actions related to emojis
-        remove_action( 'admin_print_styles', 'print_emoji_styles' );
-        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-        remove_action( 'wp_print_styles', 'print_emoji_styles' );
-        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-
-        // filter to remove TinyMCE emojis
-        add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
-    }
-}
-add_action( 'init', 'disable_wp_emojicons' );
-=======
->>>>>>> 445a261a33409e1860b1f78d25fc076015546d57
 //Sidebar
 /*
  <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('main-sidebar')) : ?><?php endif; ?>
@@ -150,17 +131,18 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 //Code phan trang
-function wp_corenavi_table() {
+function wp_corenavi_table($main_query = null) {
 		global $wp_query;
+		if(!$main_query) $main_query = $wp_query;
 		$big = 999999999; 
 		$translated = "";
-		$total = $wp_query->max_num_pages;
+		$total = $main_query->max_num_pages;
 		if($total > 1) echo '<div class="paginate_links">';
 		echo paginate_links( array(
 			'base' 		=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 			'format' 	=> '?paged=%#%',
 			'current' 	=> max( 1, get_query_var('paged') ),
-			'total' 	=> $wp_query->max_num_pages,
+			'total' 	=> $total,
 			'mid_size'	=> '10',
 			'prev_text'    => __('Trang trước','devvn'),
 			'next_text'    => __('Trang tiếp','devvn'),

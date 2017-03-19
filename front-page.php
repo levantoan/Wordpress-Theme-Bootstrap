@@ -19,14 +19,14 @@
 	  			<a href="<?=esc_url(home_url('/'))?>" title="<?php bloginfo('description')?>"><img src="<?=$logo?>" alt="<?php bloginfo('name')?>"/></a>
 	  		</div>
 	  		<?php if(has_nav_menu('header')):?>
-  			<div class="menu_header" role="navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+  			<div class="menu_header" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
   				<?php wp_nav_menu(array('theme_location'  => 'header','container'=> ''));?>
   			</div>
   			<?php endif;?>
   		</div>
   	</header>
   	
-  	<footer class="footer" role="contentinfo" itemscope="" itemtype="http://schema.org/WPFooter">
+  	<footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
   		<div class="container">
   			<div class="footer_wrap">
   			<!-- Footer code in here -->
