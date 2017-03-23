@@ -193,6 +193,39 @@ function devvn_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'devvn_excerpt_more' );
 
+if ( ! function_exists( 'devvn_ilc_mce_buttons' ) ) {
+    function devvn_ilc_mce_buttons($buttons){
+        array_push($buttons,
+            "alignjustify",
+            "subscript",
+            "superscript"
+        );
+        return $buttons;
+    }
+    add_filter("mce_buttons", "devvn_ilc_mce_buttons");
+}
+if ( ! function_exists( 'devvn_ilc_mce_buttons_2' ) ) {
+    function devvn_ilc_mce_buttons_2($buttons){
+        array_push($buttons,
+            "backcolor",
+            "anchor",
+            "fontselect",
+            "fontsizeselect",
+            "cleanup"
+        );
+        return $buttons;
+    }
+    add_filter("mce_buttons_2", "devvn_ilc_mce_buttons_2");
+}
+// Customize mce editor font sizes
+if ( ! function_exists( 'devvn_mce_text_sizes' ) ) {
+    function devvn_mce_text_sizes( $initArray ){
+        $initArray['fontsize_formats'] = "9px 10px 12px 13px 14px 16px 17px 18px 19px 20px 21px 24px 28px 32px 36px";
+        return $initArray;
+    }
+    add_filter( 'tiny_mce_before_init', 'devvn_mce_text_sizes' );
+}
+
 add_action( 'tgmpa_register', 'devvn_register_required_plugins' );
 function devvn_register_required_plugins() {
 	$plugins = array(
