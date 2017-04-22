@@ -28,6 +28,7 @@ function devvn_setup() {
 	add_theme_support( 'post-thumbnails' );
 	//Shortcode in widget
 	add_filter('widget_text', 'do_shortcode');
+    add_editor_style();
 	//menu
 	/********
 	 * Call: wp_nav_menu(array('theme_location'  => 'header','container'=> ''));
@@ -135,7 +136,6 @@ function wp_corenavi_table($main_query = null) {
 		global $wp_query;
 		if(!$main_query) $main_query = $wp_query;
 		$big = 999999999; 
-		$translated = "";
 		$total = $main_query->max_num_pages;
 		if($total > 1) echo '<div class="paginate_links">';
 		echo paginate_links( array(
