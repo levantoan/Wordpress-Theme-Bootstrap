@@ -138,16 +138,40 @@
 @media (max-width: 991px){
 	/*Menu mobile*/
 	.button_menu {
-	    float: right;
-	    font-size: 30px;
-	    color: #141469;
-	    width: 45px;
-	    height: 45px;
-	    line-height: 45px;
-	    text-align: center;
-	    cursor: pointer;
-	    margin: 21px 0 0 0;
-	    display: block;
+		float: right;
+		font-size: 30px;
+		color: #141469;
+		width: 45px;
+		height: 45px;
+		line-height: 45px;
+		text-align: center;
+		cursor: pointer;
+		margin: 10px 0 0 0;
+		display: block;
+		position: relative;
+		overflow: hidden;
+	}
+	.button_menu span {
+		display: block;
+		text-indent: -9999px;
+		height: 2px;
+		background: #79010a;
+		width: 35px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -17.5px;
+		margin-top: -2px;
+	}
+	.button_menu span::before {
+		height: 2px;
+		background: #79010a;
+		width: 100%;
+		position: absolute;
+		top: 15px;
+		left: 0;
+		margin-top: -2px;
+		content: "";
 	}
 	.menu_header {
 	    position: fixed;

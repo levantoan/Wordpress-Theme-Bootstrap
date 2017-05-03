@@ -33,6 +33,7 @@
   			</div>
   		</div>
   	</footer>
+    <div class="over_wrap"></div>
   	<?php wp_footer(); ?>
   	</body>
 </html>
