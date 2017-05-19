@@ -139,59 +139,58 @@
 	/*Menu mobile*/
 	.button_menu {
 		float: right;
-		font-size: 30px;
-		color: #141469;
 		width: 45px;
-		height: 45px;
-		line-height: 45px;
+		height: 35px;
 		text-align: center;
 		cursor: pointer;
-		margin: 10px 0 0 0;
 		display: block;
 		position: relative;
 		overflow: hidden;
+		margin: 25px 0 0 0;
+		padding: 9px 10px;
+		background-color: transparent;
+		border: 1px solid #dddddd;
+		border-radius: 0;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		background-image: none;
 	}
-	.button_menu span {
+	.button_menu .icon-bar {
 		display: block;
-		text-indent: -9999px;
+		width: 22px;
 		height: 2px;
-		background: #79010a;
-		width: 35px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-left: -17.5px;
-		margin-top: -2px;
+		border-radius: 1px;
+		background-color: #cccccc;
 	}
-	.button_menu span::before {
-		height: 2px;
-		background: #79010a;
-		width: 100%;
-		position: absolute;
-		top: 15px;
-		left: 0;
-		margin-top: -2px;
-		content: "";
+	.button_menu .icon-bar + .icon-bar {
+		margin-top: 4px;
+	}
+	.button_menu:hover{
+		background: #dddddd;
+	}
+	.button_menu:hover .icon-bar{
+		background-color: #fff;
 	}
 	.menu_header {
-	    position: fixed;
-	    top: 0;
-	    left: 0;
-	    max-width: 250px;
-	    width: 95%;
-	    height: 100%;
-	    overflow-x: hidden;
-	    overflow-y: auto;
-	    background: #f5f5f5;
-	    box-shadow: 2px 0 4px rgba(0,0,0,0.32);
-	    -moz-box-shadow: 2px 0 4px rgba(0,0,0,0.32);
-	    -webkit-box-shadow: 2px 0 4px rgba(0,0,0,0.32);
-	    -webkit-transition: -webkit-transform .4s ease;
+		position: fixed;
+		top: 0;
+		left: 0;
+		max-width: 250px;
+		width: 95%;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		background: #fff;
+		box-shadow: 2px 0 4px rgba(0,0,0,0.32);
+		-moz-box-shadow: 2px 0 4px rgba(0,0,0,0.32);
+		-webkit-box-shadow: 2px 0 4px rgba(0,0,0,0.32);
+		-webkit-transition: -webkit-transform .4s ease;
 		transition: -webkit-transform .4s ease;
 		transition: transform .4s ease;
 		transition: transform .4s ease,-webkit-transform .4s ease;
 		left: -280px;
-		padding: 10px;
+		padding: 0;
 		z-index: 999999;
 	}
 	.openMenu .menu_header {
@@ -200,21 +199,21 @@
 		transform: translate3d(280px,0,0);
 	}
 	html.openMenu, html.openMenu body {
-	    overflow: hidden;
+		overflow: hidden;
 	}
 	.menu_header > ul > li {
-	    width: 100%;
-	    line-height: 1;
-	    padding: 0;
+		width: 100%;
+		line-height: 1;
+		padding: 0;
 		margin: 0;
 		border-bottom: 1px solid #ddd;
 	}
 	.menu_header > ul > li > a {
-	    display: block;
-	    padding: 10px 0;
+		display: block;
+		padding: 10px;
 	}
 	.menu_header ul li a {
-	    border-bottom: 0;
+		border-bottom: 0;
 	}
 	.openMenu body{
 		position: relative;
@@ -232,32 +231,40 @@
 		display: block;
 	}
 	.click_opensub_menu {
-	    display: block;
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    line-height: 40px;
-	    width: 40px;
-	    text-align: center;
-	    font-size: 20px;
-	    color: #333;
-	    cursor: pointer;
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		line-height: 40px;
+		width: 40px;
+		text-align: center;
+		font-size: 20px;
+		color: #333;
+		cursor: pointer;
+		z-index: 9;
 	}
 	.menu_header > ul > li ul {
-	    width: 100%;
+		width: 100%;
 	}
 	.devvn_mobile .menu_header ul.sub-menu {
-	    display: none;
+		display: none;
 	}
 	.devvn_mobile .menu_header li.opensub_menu > ul.sub-menu,
 	.devvn_mobile .menu_header li.mobile_open_sub > ul.sub-menu {
-	    position: relative;
-	    visibility: visible;
-	    opacity: 1;
-	    width: 100%;
-	    top: 0;
-	    display: block;
-	    left: 0;
+		position: relative;
+		visibility: visible;
+		opacity: 1;
+		width: 100%;
+		top: 0;
+		display: block;
+		left: 0;
+	}
+	.menu_header > ul > li.current-menu-item > a::before, .menu_header > ul > li.current-menu-ancestor > a::before, .menu_header > ul > li.current_page_item > a::before, .menu_header > ul > li.current_page_ancestor > a::before, .menu_header > ul > li:hover > a::before, .menu_header > ul > li:focus > a::before{
+		display: none;
+	}
+	.menu_header > ul > li.current-menu-item > a, .menu_header > ul > li.current-menu-ancestor > a, .menu_header > ul > li.current_page_item > a, .menu_header > ul > li.current_page_ancestor > a, .menu_header > ul > li:hover > a, .menu_header > ul > li:focus > a {
+		color: #2b96cc;
+		background: #fff;
 	}
 	/*#menu mobile*/
 }

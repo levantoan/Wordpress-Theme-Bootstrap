@@ -22,6 +22,11 @@
   			<div class="menu_header" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
   				<?php wp_nav_menu(array('theme_location'  => 'header','container'=> ''));?>
   			</div>
+            <button type="button" class="button_menu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
   			<?php endif;?>
   		</div>
   	</header>
