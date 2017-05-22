@@ -9,7 +9,7 @@ function woo_mini_cart_int(){
 	global $woocommerce; ?>
 	<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart', 'devvn'); ?>">
 	<?php
-	echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'devvn'), $woocommerce->cart->cart_contents_count);?>
+	echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'devvn'), $woocommerce->cart->cart_contents_count);
 	?>
 	</a>
 <?php
