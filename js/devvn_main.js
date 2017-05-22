@@ -14,7 +14,7 @@ g="isArray"in Array?Array.isArray:function(a){return"[object Array]"===Object.pr
 		}else{
 			$('body').removeClass('devvn_mobile').addClass('devvn_desktop');
 		}
-        console.log("%c Web được thiết kế bởi http://levantoan.com", "font-size:25px; color: red;font-family: tahoma;padding:5px 10px;");
+        console.log("%c Coder Lê Văn Toản - http://levantoan.com", "font-size:25px; color: red;font-family: tahoma;padding:5px 10px;");
 		/*Go to element*/
 		$("a.gotoDiv").click(function(){
 			var idElement = $(this).attr("href");
