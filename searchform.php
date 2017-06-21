@@ -1,4 +1,4 @@
-<div itemscope itemtype="http://schema.org/WebSite">
+<div itemscope itemtype="http://schema.org/WebSite" class="search_form_wrap">
     <meta itemprop="url" content="<?php echo home_url();?>"/>
     <form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" method="get" class="form-inline" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
     	<meta itemprop="target" content="<?php echo home_url();?>?s={s}"/>      
