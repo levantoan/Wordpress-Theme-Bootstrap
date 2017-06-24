@@ -193,6 +193,11 @@ function devvn_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'devvn_excerpt_more' );
 
+function devvn_custom_excerpt_length( $length ) {
+    return 34;
+}
+add_filter( 'excerpt_length', 'devvn_custom_excerpt_length', 999 );
+
 if ( ! function_exists( 'devvn_ilc_mce_buttons' ) ) {
     function devvn_ilc_mce_buttons($buttons){
         array_push($buttons,
