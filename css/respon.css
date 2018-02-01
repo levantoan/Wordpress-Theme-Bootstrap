@@ -205,19 +205,20 @@
 
     .button_menu .icon-bar:nth-child(3) {
         position: absolute;
-        margin: -2px 0 0 0;
+        margin: 4px 0 0 0;
     }
-
     .openMenu .button_menu .icon-bar:nth-child(2) {
         transform: rotate(-45deg);
         -moz-transform: rotate(-45deg);
         -webkit-transform: rotate(-45deg);
+        margin-top: -3px;
     }
 
     .openMenu .button_menu .icon-bar:nth-child(3) {
         transform: rotate(45deg);
         -moz-transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
+        margin-top: -2px;
     }
 
     .openMenu .button_menu .icon-bar:nth-child(1), .openMenu .button_menu .icon-bar:nth-child(4) {

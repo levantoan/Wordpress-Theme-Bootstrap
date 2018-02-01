@@ -137,3 +137,22 @@ function devvn_views_users_so_15295853( $views )
     }
     return $views;
 }
+add_action( 'admin_menu', 'my_remove_menu_pages', 999 );
+function my_remove_menu_pages() {
+    global $current_user;
+    $username = $current_user->user_login;
+    /*echo '<pre>' . print_r( $GLOBALS[ 'menu' ], TRUE) . '</pre>';*/
+    if ($username != 'devvn') {
+        remove_menu_page('tools.php');
+        remove_menu_page('duplicator');
+        remove_menu_page('plugins.php');
+    }
+};
+add_action('init','devvn_after_init');
+function devvn_after_init(){
+    global $current_user;
+    $username = $current_user->user_login;
+    if ($username != 'devvn') {
+        add_filter('file_mod_allowed', '__return_false');
+    }
+}
