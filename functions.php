@@ -8,7 +8,7 @@ if( class_exists('acf') ) {
 
 require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
 require get_template_directory() . '/inc/aq_resizer.php';
-//require get_template_directory() . '/inc/copyright/copyright_svl.php';
+require get_template_directory() . '/inc/copyright/copyright_svl.php';
 //require get_template_directory() . '/inc/woocommerce_int/woo_int.php';
 require get_template_directory() . '/inc/style_script_int.php';
 

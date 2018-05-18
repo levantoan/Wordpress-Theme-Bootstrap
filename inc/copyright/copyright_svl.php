@@ -7,20 +7,22 @@ add_action('wp_before_admin_bar_render', 'annointed_admin_bar_remove', 0);
 
 function mw_login_styles() {
 	$logo = get_field('logo','option');
-  	$logo = ($logo) ? $logo : TEMP_URL.'/images/logo.png';
+  	$logo = ($logo) ? $logo : TEMP_URL.'/inc/copyright/devvn-logo.png';
 	echo '<style type="text/css">.login h1 a { background: url('.$logo.') no-repeat center top;width: inherit;height: 50px;background-size: auto 100%;-moz-background-size: auto 100%;-webkit-background-size: auto 100%;}</style>';
 }
 add_action('login_head', 'mw_login_styles');
 
 // Change Login URL
 function mw_login_url() {
-	return esc_url(home_url());
+	//return esc_url(home_url());
+    return esc_url('https://levantoan.com');
 }
 add_filter( 'login_headerurl', 'mw_login_url' );
 
 // Change Login Title
 function mw_login_title() {
-	return get_bloginfo('description');
+	//return get_bloginfo('description');
+    return 'Thiết kế website bán hàng chuẩn SEO';
 }
 add_filter( 'login_headertitle', 'mw_login_title' );
 
