@@ -6,8 +6,8 @@ function annointed_admin_bar_remove() {
 add_action('wp_before_admin_bar_render', 'annointed_admin_bar_remove', 0);
 
 function mw_login_styles() {
-	$logo = get_field('logo','option');
-  	$logo = ($logo) ? $logo : TEMP_URL.'/inc/copyright/devvn-logo.png';
+	//$logo = get_field('logo','option');
+  	$logo = TEMP_URL.'/inc/copyright/devvn-logo.png';
 	echo '<style type="text/css">.login h1 a { background: url('.$logo.') no-repeat center top;width: inherit;height: 50px;background-size: auto 100%;-moz-background-size: auto 100%;-webkit-background-size: auto 100%;}</style>';
 }
 add_action('login_head', 'mw_login_styles');
@@ -49,12 +49,12 @@ add_action( 'admin_init', 'remove_dashboard_meta' );
 
 add_action('update_right_now_text', 'devvn_update_right_now_text');
 function devvn_update_right_now_text(){
-	return __('Website được phát triển bởi <a href="http://devvn.com" target="_blank">DevVN Team!</a>','devvn');	
+	return __('Website được phát triển bởi <a href="https://devvn.com" target="_blank">DevVN Team!</a>','devvn');
 }
 
 // Function that outputs the contents of the dashboard widget
 function dashboard_widget_function() {
-		$result = wp_remote_get('http://levantoan.com/feed/');
+		$result = wp_remote_get('https://levantoan.com/feed/');
     	if (!is_wp_error($result)) {
 	    	if ($result['response']['code'] == 200) {
 	    		$xml = simplexml_load_string($result['body']);
@@ -74,15 +74,15 @@ function dashboard_widget_function() {
 					?>
 					<li>
 						<hr />
-						<a href="http://levantoan.com/category/wordpress/" class="wp_svl" target="_blank"><?php _e('Thủ thuật wordpress'); ?></a>
-						<a href="http://levantoan.com/category/wordpress/woocommerce/" class="woo_svl" target="_blank"><?php _e('Thủ thuật Woocommerce'); ?></a>
-						<a href="http://levantoan.com/" class="mywweb_svl" target="_blank"><?php _e('My Website'); ?></a>
+						<a href="https://levantoan.com/category/wordpress/" class="wp_svl" target="_blank"><?php _e('Thủ thuật wordpress'); ?></a>
+						<a href="https://levantoan.com/category/wordpress/woocommerce/" class="woo_svl" target="_blank"><?php _e('Thủ thuật Woocommerce'); ?></a>
+						<a href="https://levantoan.com/" class="mywweb_svl" target="_blank"><?php _e('My Website'); ?></a>
 					</li>
 				</ul>
 			</div>
 	    <?php	
     	} else {
-    		echo 'Visit <a href="http://levantoan.com">my website</a>';
+    		echo 'Visit <a href="https://levantoan.com">my website</a>';
     	} 
 } 
 function register_my_dashboard_widget() {
